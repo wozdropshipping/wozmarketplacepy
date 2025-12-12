@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Woz Marketplace — Woz Dropshipping</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/tutorial.css">
+</head>
+<body>
+  <main id="app" class="app">
+
+    <!-- HEADER / HERO -->
+    <header class="hero">
+      <!-- Icono de Mi Perfil fijo en la esquina superior derecha -->
+      <div class="profile-icon-corner">
+        <a href="mi-zona.html" class="profile-link-corner" aria-label="Mi Perfil">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
+        </a>
+      </div>
+      
+      <div class="hero-inner">
+        <h1 class="brand">Woz<br><span class="brand--light">Marketplace</span></h1>
+        <label class="search" for="search-input" aria-label="Buscar">
+          <input id="search-input" type="search" placeholder="¿Qué estás buscando?" />
+        </label>
+
+        <!-- NUEVO: Acciones de Usuario (Perfil / Logout) -->
+        <div class="user-actions">
+          <a class="action-btn" href="mi-zona.html" aria-label="Mi Perfil">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+            <span>Mi Cuenta</span>
+          </a>
+          <button class="action-btn logout-btn" onclick="logout()" aria-label="Cerrar Sesión">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+            <span>Salir</span>
+          </button>
+        </div>
+
+      </div>
+      <nav class="subnav">
+        <button class="nav-btn" id="country-btn">Comprar en Paraguay ▼</button>
+        <button class="nav-btn" id="ganar-btn">Gana con Woz Dropshipping</button>
+      </nav>
+    </header>
+
+    <!-- SECCIÓN DE PRENSA (nuevo) -->
+    <section class="press-banner">
+          <div class="press-label">Prensa</div>
+          <h3 class="press-title">Renunció a todo y consolidó el comercio electrónico con Woz Paraguay</h3>
+          <p class="press-excerpt">Fundado en el 2015, Woz Paraguay es una empresa que impulsa oportunidades para emprendedores con su holding tecnologico que incluye Woz Payments, Woz Dropshipping y Woz Markerplace. Haz clic para leer la nota completa en el sitio de prensa.</p>
+          <div class="press-meta">
+            <!-- usamos un icono emoji en vez de img para evitar el icono roto -->
+            <span class="press-icon" aria-hidden="true">📣</span>
+            <span class="press-source">Diario La Nacion Paraguay</span>
+          </div>
+        </div>
+      </a>
+    </section>
+
+    <!-- FILTRO: botón exterior y modal (pegar aquí, sin tocar el resto) -->
+    <div class="filter-button-wrap">
+      <button id="openFiltersBtn" class="filter-toggle" type="button">Filtro Woz Marketplace</button>
+    </div>
+
+    <!-- Modal de filtros (oculto por defecto) -->
+    <div id="filtersModal" class="filters-modal" aria-hidden="true" role="dialog" aria-label="Filtros Woz Marketplace">
+      <div class="filters-modal-panel" role="document">
+        <header class="filters-modal-header">
+          <h3>Filtro Woz Marketplace</h3>
+          <button id="closeFiltersBtn" class="filters-close" aria-label="Cerrar">✕</button>
+        </header>
+        <div class="filters-modal-body">
+          <select id="providerFilter" aria-label="Proveedor"><option value="all">Todos los proveedores</option></select>
+          <div class="vendor-filter-wrap" style="position:relative;">
+            <select id="vendorFilter" aria-label="Vendedor">
+              <option value="all">Todos los vendedores</option>
+            </select>
+          </div>
+          <select id="categoryFilter" aria-label="Categoría"><option value="all">Todas las categorías</option></select>
+          <select id="ratingFilter" aria-label="Calificación">
+            <option value="all">Todas las calificaciones</option>
+            <option value="4">4 estrellas o más</option>
+            <option value="3">3 estrellas o más</option>
+            <option value="2">2 estrellas o más</option>
+          </select>
+          <select id="sortSelect" aria-label="Ordenar">
+            <option value="relevance">Relevancia</option>
+            <option value="price_low">Precio: más bajo</option>
+            <option value="price_high">Precio: más alto</option>
+            <option value="rating_high">Mejor valorados</option>
+          </select>
+
+          <div class="filters-actions">
+            <button id="applyFilters" class="btn-apply">Aplicar</button>
+            <button id="clearFilters" class="btn-clear">Limpiar</button>
+          </div>
+        </div>
+      </div>
+      <div id="filtersBackdrop" class="filters-modal-backdrop"></div>
+    </div>
+
+    <!-- REEMPLAZAR solo este aside (desktopFilters) -->
+    <aside id="desktopFilters" class="desktop-filters" aria-label="Filtros Woz Marketplace - Desktop">
+      <div class="desktop-filters-panel" role="region" aria-labelledby="desktop-filters-title">
+        <header class="desktop-filters-header">
+          <h3 id="desktop-filters-title">Filtro Woz Marketplace</h3>
+          <p class="desktop-filters-sub">Filtra resultados</p>
+        </header>
+
+        <div class="desktop-filters-body">
+
+          <!-- Lista de proveedores (radio, desplegada) -->
+          <section class="filter-section">
+            <h4 class="filter-section-title">Lista de proveedores</h4>
+            <ul id="desktopProviders" class="options-list" role="list">
+              <!-- conservadas — puedes añadir más aquí o poblar desde JS -->
+              <li><label><input type="radio" name="desktop-provider" value="amazon"> <span>Amazon</span></label></li>
+              <li><label><input type="radio" name="desktop-provider" value="ebay"> <span>eBay</span></label></li>
+              <li><label><input type="radio" name="desktop-provider" value="walmart"> <span>Walmart</span></label></li>
+              <li><label><input type="radio" name="desktop-provider" value="aliexpress"> <span>AliExpress</span></label></li>
+              <li><label><input type="radio" name="desktop-provider" value="mercadolibre"> <span>Mercado Libre</span></label></li>
+              <li><label><input type="radio" name="desktop-provider" value="other"> <span>Otros</span></label></li>
+            </ul>
+          </section>
+
+          <!-- Filtro de PRECIOS (radio) -->
+          <section class="filter-section">
+            <h4 class="filter-section-title">Precios</h4>
+            <ul class="options-list price-ranges">
+              <li><label><input type="radio" name="priceRange" value="100000-500000"> <span>100.000 Gs - 500.000 Gs</span></label></li>
+              <li><label><input type="radio" name="priceRange" value="500000-1000000"> <span>500.000 Gs - 1.000.000 Gs</span></label></li>
+              <li><label><input type="radio" name="priceRange" value="1000000-5000000"> <span>1.000.000 Gs - 5.000.000 Gs</span></label></li>
+              <li><label><input type="radio" name="priceRange" value="5000000-8000000"> <span>5.000.000 Gs - 8.000.000 Gs</span></label></li>
+              <li><label><input type="radio" name="priceRange" value="8000000-plus"> <span>8.000.000 Gs - adelante</span></label></li>
+            </ul>
+          </section>
+
+          <!-- Calificación (estrellas visuales, radio) -->
+          <section class="filter-section">
+          </section>
+
+          <!-- SECCIONES DE VENDEDORES ELIMINADAS -->
+
+          <div class="desktop-filters-actions">
+            <button id="applyFiltersDesktop" class="btn-apply">Aplicar</button>
+            <button id="clearFiltersDesktop" class="btn-clear">Limpiar</button>
+          </div>
+
+        </div>
+      </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <section class="content">
+      <!-- Título y contador -->
+      <div class="list-header">
+        <h2>Productos Woz Marketplace</h2>
+        <p class="muted">12.409 productos activos</p>
+      </div>
+
+      <!-- Contenedor de productos para JS -->
+      <div id="product-list" class="product-list">
+        <!-- Aquí el JS inyecta las tarjetas de producto -->
+        <div id="scroll-sentinel" class="scroll-sentinel" aria-hidden="true"></div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <div class="footer-inner">
+        <small>© Woz Marketplace — Datos ficticios para demo</small>
+      </div>
+    </footer>
+  </main>
+
+  <!-- Link al JS -->
+  <script src="js/app.js" defer></script>
+  <script src="js/tutorial.js" defer></script>
+  <script>
+    function logout() {
+      localStorage.removeItem('usuarioActual');
+      window.location.reload();
+    }
+  </script>
+</body>
+</html>

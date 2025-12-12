@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Woz Payments — Finalizar compra</title>
+  <link rel="stylesheet" href="css/styles-checkout.css" />
+  <!-- ...existing code... -->
+  <link rel="stylesheet" href="css/tutorial.css">
+  <link rel="stylesheet" href="css/checkout.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <!-- Encabezado principal -->
+  <header class="checkout-header">
+    <div class="logo">
+      <h1>Woz <span>Payments</span></h1>
+    </div>
+  </header>
+
+  <!-- Contenedor principal -->
+  <main class="checkout-container">
+    <section class="intro-box">
+      <div class="intro-inner">
+        <h2 class="intro-title">Pagos</h2>
+        <p class="intro-sub">Todas las transacciones son seguras y están encriptadas. Realiza el pago por <a href="#">Woz Payments</a></p>
+      </div>
+    </section>
+
+    <!-- NUEVO: Wrapper para el Grid Superior (Datos y Envío) -->
+    <div class="top-layout-grid">
+      
+      <!-- COLUMNA IZQUIERDA: Personales y Facturación -->
+      <div class="layout-col-left">
+        <!-- Datos personales -->
+        <section class="checkout-section">
+          <h3 class="section-title-bold">Datos personales</h3>
+          <input type="text" placeholder="Nombre completo" id="nombreCompleto" />
+        </section>
+
+        <!-- Datos de facturación -->
+        <section class="checkout-section">
+          <h3 class="section-title-bold">Datos de facturación</h3>
+          <input type="text" placeholder="Nombre completo" id="facturaNombre" />
+          <input type="text" placeholder="RUC o Cédula de identidad" id="ruc" />
+        </section>
+      </div>
+
+      <!-- COLUMNA DERECHA: Envío -->
+      <div class="layout-col-right">
+        <section class="checkout-section h-full">
+          <h3 class="section-title-bold">Dirección de envío</h3>
+          <div class="shipping-form">
+            <input type="text" placeholder="Titular o quien recibe" id="titular" />
+            <input type="text" placeholder="Dirección de envío (Calle 1, Calle 2 - cruces)" id="direccion" />
+            <div class="split">
+              <input type="text" placeholder="Departamento, casa" id="departamento" />
+              <input type="text" placeholder="Número de casa" id="numeroCasa" />
+            </div>
+            <div class="split">
+              <input type="text" placeholder="País" id="pais" value="Paraguay" />
+              <input type="text" placeholder="Ciudad" id="ciudad" />
+            </div>
+            <input type="text" placeholder="WhatsApp del que recibe" id="whatsapp" />
+            <div class="proximamente-box">Proximamente<br><small>Woz E-lockers - Retiros en sucursales</small></div>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <!-- Método de pago (Ocupa todo el ancho, internamente se divide) -->
+    <section class="checkout-section payment-section-wrapper">
+      <h3 class="section-title-bold">Método de pago</h3>
+      
+      <div class="payment-options">
+        <!-- 1. Tarjeta de Crédito -->
+        <div class="payment-item" id="item-credito">
+            <div class="payment-header">
+                <input type="radio" name="paymentMethod" value="credit" class="hidden-radio">
+                <div class="header-left">
+                  <svg class="payment-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
+                  <div class="payment-info">
+                    <span class="payment-title">Tarjeta de crédito</span>
+                    <span class="payment-subtitle">Comisión: 5% + 1 USD</span>
+                  </div>
+                </div>
+                <svg class="chevron-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </div>
+            <div class="payment-details-form" id="form-credito"> <!-- ID agregado para referencia si hace falta -->
+                <div class="form-group">
+                  <label>Número de tarjeta</label>
+                  <input type="text" placeholder="0000 0000 0000 0000">
+                </div>
+                <div class="form-row">
+                  <div class="form-group">
+                    <label>Vencimiento</label>
+                    <input type="text" placeholder="MM/AA">
+                  </div>
+                  <div class="form-group">
+                    <label>CVV</label>
+                    <input type="text" placeholder="123">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label>Nombre del titular</label>
+                  <input type="text" placeholder="Como aparece en la tarjeta">
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. Tarjeta de Débito -->
+        <div class="payment-item" id="item-debito">
+             <div class="payment-header">
+                <input type="radio" name="paymentMethod" value="debit" class="hidden-radio">
+                <div class="header-left">
+                  <svg class="payment-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"></rect><line x1="2" y1="10" x2="22" y2="10"></line></svg>
+                  <div class="payment-info">
+                    <span class="payment-title">Tarjeta de débito</span>
+                    <span class="payment-subtitle">Comisión: 5% + 1 USD</span>
+                  </div>
+                </div>
+                <svg class="chevron-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+              </div>
+              <div class="payment-details-form">
+                <div class="form-group">
+                    <label>Número de tarjeta de débito</label>
+                    <input type="text" placeholder="0000 0000 0000 0000">
+                  </div>
+                  <div class="form-row">
+                    <div class="form-group">
+                      <label>Vencimiento</label>
+                      <input type="text" placeholder="MM/AA">
+                    </div>
+                    <div class="form-group">
+                      <label>CVV</label>
+                      <input type="text" placeholder="123">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label>Nombre del titular</label>
+                    <input type="text" placeholder="Como aparece en la tarjeta">
+                  </div>
+              </div>
+        </div>
+
+        <!-- 3. Woz -->
+        <div class="payment-item" id="item-woz">
+             <div class="payment-header">
+                <input type="radio" name="paymentMethod" value="woz" class="hidden-radio">
+                <div class="header-left">
+                  <svg class="payment-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ffb400" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"></path></svg>
+                  <div class="payment-info">
+                    <span class="payment-title">Saldo Woz Payments</span>
+                    <span class="payment-subtitle">Sin comisión</span>
+                  </div>
+                </div>
+                <svg class="chevron-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+              </div>
+              <div class="payment-details-form">
+                <div class="woz-balance-box">
+                  <p>Saldo disponible: <strong>Gs. 0</strong></p>
+                  <small>Debes iniciar sesión para utilizar tu billetera.</small>
+                </div>
+              </div>
+        </div>
+
+        <!-- 4. Apple -->
+        <div class="payment-item" id="item-apple">
+             <div class="payment-header">
+                <input type="radio" name="paymentMethod" value="apple" class="hidden-radio">
+                <div class="header-left">
+                  <svg class="payment-icon" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M17.2 14.7c-.1-.8.3-1.5.8-2.1-.8-1.1-2-1.2-2.4-1.2-1-.1-2 .6-2.5 .6-.5 0-1.4-.6-2.2-.6-1.1 0-2.2.7-2.8 1.7-.6 1-.5 2.9.4 4.3 .5 .7 .9 1.3 1.6 1.3 .6 0 .9-.4 1.6-.4 .7 0 .9 .4 1.6 .4 .7 0 1.1-.6 1.5-1.2 .5-.7 .7-1.4 .7-1.4-.1 0-.8-.5-.9-1.4zm-2.3-4.2c.4-.6 .7-1.3 .6-2-.6 0-1.3 .4-1.7 .9-.4 .5-.7 1.2-.6 1.9 .6 .1 1.3-.3 1.7-.8z"/></svg>
+                  <div class="payment-info">
+                    <span class="payment-title">Apple Pay</span>
+                  </div>
+                </div>
+                <svg class="chevron-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+              </div>
+              <div class="payment-details-form" style="padding:0; border:none;"></div>
+        </div>
+
+        <!-- 5. Google -->
+        <div class="payment-item" id="item-google">
+             <div class="payment-header">
+                <input type="radio" name="paymentMethod" value="google" class="hidden-radio">
+                <div class="header-left">
+                  <svg class="payment-icon" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12.24 10.285V14.4h6.806c-.275 1.765-2.056 5.174-6.806 5.174-4.095 0-7.439-3.389-7.439-7.574s3.345-7.574 7.439-7.574c2.33 0 3.891.989 4.785 1.849l3.254-3.138C18.189 1.186 15.479 0 12.24 0c-6.635 0-12 5.365-12 12s5.365 12 12 12c6.926 0 11.52-4.869 11.52-11.726 0-.788-.085-1.39-.189-1.989H12.24z"/></svg>
+                  <div class="payment-info">
+                    <span class="payment-title">Google Pay</span>
+                  </div>
+                </div>
+                <svg class="chevron-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+              </div>
+              <div class="payment-details-form" style="padding:0; border:none;"></div>
+        </div>
+
+        <!-- Botón Pagar se moverá al final del resumen -->
+
+      </div>
+    </section>
+
+    <!-- Resumen del pedido (Al final) -->
+    <section class="checkout-resumen">
+      <div class="resumen-header">
+        <h3 class="section-title-bold">Resumen del pedido</h3>
+      </div>
+      <div class="summary-list">
+        <div class="summary-row">
+          <div class="summary-left">
+            <div class="summary-title" id="res-prod-nombre">—</div>
+            <div class="summary-sub">Artículo seleccionado para pagar</div>
+          </div>
+        </div>
+        <div class="summary-row">
+          <div class="summary-left">
+            <div class="summary-title">Subtotal estimativo</div>
+            <div class="summary-sub">Importe calculado en producto</div>
+          </div>
+          <div class="summary-right" id="mini-subtotal">Gs. —</div>
+        </div>
+        <div class="summary-row">
+          <div class="summary-left">
+            <div class="summary-title">Comisión</div>
+            <div class="summary-sub">5% + 1 USD si pagas con tarjeta</div>
+          </div>
+          <div class="summary-right" id="mini-comision">Gs. —</div>
+        </div>
+        <div class="summary-row">
+          <div class="summary-left">
+            <div class="summary-title">Envío</div>
+            <div class="summary-sub">Tarifa base según ciudad</div>
+          </div>
+          <div class="summary-right" id="mini-envio">Gs. —</div>
+        </div>
+        <div class="summary-row summary-total">
+          <div class="summary-left">
+            <div class="summary-title">Total a pagar</div>
+          </div>
+          <div class="summary-right"><span id="totalCompra">0</span></div>
+        </div>
+      </div>
+
+      <!-- Botón Pagar debajo del resumen -->
+      <div class="pay-button-container">
+        <button id="btnPagar">Pagar</button>
+      </div>
+
+      <div id="listaProductos" class="lista-productos" style="display:none">
+        <!-- Productos cargados dinámicamente (oculto, ya se muestra arriba en resumen) -->
+      </div>
+    </section>
+
+    <!-- Footer eliminado de aquí porque el botón se movió arriba -->
+    <section class="checkout-footer" style="display:none;">
+    </section>
+
+  </main>
+
+  <script src="js/checkout.js"></script>
+   <!-- ...existing code... -->
+  <script src="js/tutorial.js" defer></script>
+  <script>
+    // Enhanced payment UI renderer + selection visuals
+    document.addEventListener('DOMContentLoaded', function(){
+      const paymentDetails = document.getElementById('paymentDetails');
+      const lista = document.getElementById('listaProductos');
+      const totalEl = document.getElementById('totalCompra');
+      const btn = document.getElementById('btnPagar');
+
+      function markSelected(){
+        document.querySelectorAll('.pay-card').forEach(label => {
+          const input = label.querySelector('input[type="radio"]');
+          label.classList.toggle('selected', !!(input && input.checked));
+        });
+      }
+
+      function renderCardForm(){
+        paymentDetails.innerHTML = `\n          <div class="card-panel">\n            <label>Nombre en la tarjeta<input type="text" id="tarjetaNombre" placeholder="Nombre completo"></label>\n            <label>Número de tarjeta<input type="text" id="tarjetaNumero" maxlength="19" placeholder="0000 0000 0000 0000"></label>\n            <div class="split">\n              <label>Vencimiento<input type="text" id="tarjetaVencimiento" placeholder="MM/AA"></label>\n              <label>CVC<input type="text" id="tarjetaCVC" maxlength="4" placeholder="CVC"></label>\n            </div>\n            <label>Correo<input type="email" id="email" placeholder="correo@ejemplo.com"></label>\n          </div>\n        `;
+        btn.textContent = 'Pagar';
+      }
+
+      function renderWallet(name){
+        paymentDetails.innerHTML = `\n          <div class="wallet-panel">\n            <p class="wallet-desc">Continuar con <strong>${name}</strong>.</p>\n            <button type="button" class="wallet-btn" data-wallet="${name}">Pagar con ${name}</button>\n          </div>\n        `;
+        btn.textContent = 'Pagar';
+      }
+
+      function renderWoz(){
+        paymentDetails.innerHTML = `\n          <div class="woz-panel">\n            <label>ID de cuenta<input type="text" id="wozId" placeholder="ID de cuenta"></label>\n            <div class="woz-actions">\n              <button type="button" id="buscarCuenta">Buscar cuenta</button>\n              <button type="button" id="vincularCuenta">Vincular cuenta</button>\n            </div>\n            <p class="wallet-desc">Usa tu saldo Woz Payments para pagar de forma inmediata y segura.</p>\n          </div>\n        `;
+        btn.textContent = 'Pagar';
+        setTimeout(()=>{
+          const buscar = document.getElementById('buscarCuenta');
+          const vinc = document.getElementById('vincularCuenta');
+          if(buscar) buscar.addEventListener('click', ()=> alert('Buscando cuenta...'));
+          if(vinc) vinc.addEventListener('click', ()=> alert('Vinculando cuenta...'));
+        },0);
+      }
+
+      function updatePaymentUI(){
+        const sel = (document.querySelector('input[name="paymentMethod"]:checked') || {}).value;
+        markSelected();
+        if(sel === 'credit' || sel === 'debit') renderCardForm();
+        else if(sel === 'apple') renderWallet('Apple Pay');
+        else if(sel === 'google') renderWallet('Google Pay');
+        else if(sel === 'woz') renderWoz();
+        else paymentDetails.innerHTML = '';
+      }
+
+      document.querySelectorAll('input[name="paymentMethod"]').forEach(r=> r.addEventListener('change', updatePaymentUI));
+
+      document.addEventListener('click', function(e){
+        if(e.target.matches('.wallet-btn')){
+          alert('Iniciar flujo de pago con ' + e.target.dataset.wallet);
+        }
+      });
+
+      if(lista && lista.children.length === 0){
+        lista.innerHTML = `\n          <div class="producto-item">\n            <img class="thumb" src="https://via.placeholder.com/64" alt="miniatura">\n            <div class="meta">\n              <div class="title">Zapatillas running Versión A</div>\n              <div class="qty">Cantidad: 1</div>\n            </div>\n            <div class="price">Gs. 42.354</div>\n          </div>\n        `;
+        if(totalEl) totalEl.textContent = '42.354';
+      }
+
+      updatePaymentUI();
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Woz Dropshipping</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="css/tutorial.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <div class="logo-dots" aria-hidden="true">
+        <span class="dot green"></span>
+        <span class="dot navy"></span>
+        <span class="dot blue"></span>
+      </div>
+      <div class="brand-text">
+        <div class="title">Woz Dropshipping</div>
+      </div>
+    </div>
+
+    <div class="search-area">
+      <input id="searchInput" placeholder="¿Qué productos estás buscando?" />
+      <!-- NUEVO: Botón de búsqueda -->
+      <button id="searchButton" class="search-btn" aria-label="Buscar">
+        🔍
+      </button>
+    </div>
+  </header>
+
+  <!-- Banner del tutorial (agregar aquí) -->
+  <section id="tutorial-banner" class="tutorial-banner">
+    <div class="tutorial-banner-inner">
+      <h3>Tutorial de cómo vender</h3>
+      <p id="tutorial-intro">¿No sabes cómo vender? Aprende paso a paso con este recorrido interactivo por la plataforma. El tutorial te mostrará las zonas importantes para publicar y vender un producto.</p>
+      <button id="startTutorialBtn" class="tutorial-start">Comenzar tutorial y aprende</button>
+    </div>
+  </section>
+
+  <main>
+    <section class="controls">
+      <div class="dropper-box">
+        <div class="dropper-label">Droppers a nivel general</div>
+        <div class="dropper-count" id="globalDroppers"></div>
+        <small id="dropper-note"><strong>DROPPERS MES A MES</strong><br>Estos droppers están viendo estos productos</small>
+      </div>
+
+      <!-- --- Droppers por país --- -->
+      <div class="dropper-region">
+        <div class="region-title">Droppers por país</div>
+        <ul class="region-list">
+          <li>
+            <strong>Paraguay:</strong>
+            <span class="region-count" data-country="py">
+              3.314
+              <span class="region-arrow"></span>
+            </span>
+          </li>
+          <li><strong>Argentina:</strong>
+            <span class="region-count" data-country="ar">
+              105.098
+              <span class="region-arrow"></span>
+            </span>
+          </li>
+          <li><strong>Brasil:</strong>
+            <span class="region-count" data-country="br">
+              89.420
+              <span class="region-arrow"></span>
+            </span>
+          </li>
+          <li><strong>Chile:</strong>
+            <span class="region-count" data-country="cl">
+              42.880
+              <span class="region-arrow"></span>
+            </span>
+          </li>
+          <li><strong>Uruguay:</strong>
+            <span class="region-count" data-country="uy">
+              15.230
+              <span class="region-arrow"></span>
+            </span>
+          </li>
+          <li><strong>Perú:</strong>
+            <span class="region-count" data-country="pe">
+              67.110
+              <span class="region-arrow"></span>
+            </span>
+          </li>
+          <li><strong>Colombia:</strong>
+            <span class="region-count" data-country="co">
+              78.900
+              <span class="region-arrow"></span>
+            </span>
+          </li>
+        </ul>
+      </div>
+      <!-- --- fin dropper-region --- -->
+
+      <!-- Filtros originales -->
+      <div class="filters">
+        <span class="filtros-label">Filtros</span>
+        <select id="sortSelect">
+          <option value="relevance">Más relevantes</option>
+          <option value="price_low">Precio: más bajo</option>
+          <option value="price_high">Precio: más alto</option>
+          <option value="rating_high">Mejor calificados</option>
+        </select>
+
+        <select id="countryFilter">
+          <option value="all">Todos</option>
+          <option value="nacional">Productos Nacionales</option>
+          <option value="internacional">Productos Internacionales</option>
+        </select>
+
+        <select id="providerFilter">
+          <option value="all">Todos los proveedores</option>
+        </select>
+
+        <select id="ratingFilter">
+          <option value="all">Todas las calificaciones</option>
+          <option value="3">3 estrellas o más</option>
+          <option value="4">4 estrellas o más</option>
+          <option value="5">5 estrellas</option>
+        </select>
+
+        <button id="clearFilters" title="Limpiar filtros">🖋</button>
+      </div>
+
+      <!-- NUEVO: Botón responsive de filtros -->
+      <button id="mobileFiltersToggle" class="mobile-filters-btn" aria-label="Mostrar filtros">
+        &#128269; Filtros
+      </button>
+    </section>
+
+    <!-- NUEVO: Título antes de la lista -->
+    <h2 class="section-title">Productos Woz Dropshipping </h2>
+    <section id="productList" class="product-list" aria-live="polite"></section>
+
+    <div id="loading" class="loading">Cargando más productos...</div>
+  </main>
+
+  <!-- TEMPLATE DE PRODUCTO -->
+  <template id="productTemplate">
+    <div class="product-card">
+      <div class="info">
+        <h2 class="title"></h2>
+        <div class="provider">
+          <span class="provider-name"></span>
+          <span class="verified" title="Proveedor verificado">✔︎</span>
+        </div>
+        <div class="prices">
+          <div class="provider-price">Precio proveedor: <span class="price-provider"></span></div>
+          <div class="suggested-price">Precio sugerido: <strong class="price-suggested"></strong></div>
+        </div>
+        <div class="rating">
+          <span class="stars"></span>
+          <span class="reviews"></span>
+        </div>
+        <div class="extra-info">
+          <div class="sold-count"></div>
+          <div class="profitability"></div>
+        </div>
+        <div class="droppers">
+          <svg class="user-icon" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true">
+            <path d="M12 12a5 5 0 1 0 0-10 5 5 0 0 0 0 10zm0 2c-5.33 0-8 2.67-8 4v2h16v-2c0-1.33-2.67-4-8-4z"/>
+          </svg>
+          <span class="droppers-count"></span>
+        </div>
+      </div>
+      <button class="vender-btn">Vender este producto</button>
+    </div>
+  </template>
+  <!-- FIN TEMPLATE -->
+
+  <!-- Modal para vender producto -->
+  <div id="venderModal" class="modal" style="display:none;">
+    <div class="modal-content">
+      <button class="close-modal" onclick="document.getElementById('venderModal').style.display='none'">×</button>
+
+      <h2 class="modal-title">Vender en Woz Marketplace</h2>
+
+      <form id="venderForm" class="modal-form" autocomplete="off">
+        <!-- Nombre -->
+        <div class="form-group first-group">
+          <label for="vendedorNombre">Nombre del vendedor</label>
+          <small class="form-subtext">Escribe el nombre de vendedor que estará en Woz Marketplace</small>
+          <input id="vendedorNombre" name="vendedorNombre" class="input-woz" type="text" placeholder=" " required>
+        </div>
+
+        <!-- Precio (con prefijo Gs.) -->
+        <div class="form-group price-group">
+          <label for="precioVendedor">Precio del vendedor</label>
+          <small class="form-subtext">Es la diferencia entre el precio de proveedor y tu precio final</small>
+          <div class="price-input-wrap">
+            <span class="gs-prefix">Gs.</span>
+            <input id="precioVendedor" name="precioVendedor" class="input-woz price-input" type="text" inputmode="numeric" placeholder=" ">
+          </div>
+        </div>
+
+        <!-- ID vendedor -->
+        <div class="form-group vendor-id-field">
+          <label for="vendorIdInput">ID de vendedor</label>
+          <small class="form-subtext">Carga el ID que te proveemos en WhatsApp; es único.</small>
+          <div class="vendor-id-rect">
+            <div class="id-label">ID</div>
+            <input id="vendorIdInput" name="vendorId" class="input-woz" type="text" placeholder="619-789-987">
+          </div>
+        </div>
+
+        <!-- WhatsApp -->
+        <div class="form-group">
+          <label for="vendedorWhats">WhatsApp</label>
+          <small class="form-subtext">Deja un contacto de WhatsApp para que los compradores te contacten</small>
+          <input id="vendedorWhats" name="vendedorWhats" class="input-woz" type="text" placeholder="Ej: 0977 123 456">
+        </div>
+
+        <!-- Descripción -->
+        <div class="form-group">
+          <label for="vendedorDesc">Descripción del producto</label>
+          <small class="form-subtext">Escribe una buena descripción.</small>
+          <textarea id="vendedorDesc" name="vendedorDesc" class="input-woz" placeholder=" "></textarea>
+        </div>
+
+        <!-- Datos bancarios (alineados) -->
+        <div class="banco-box" aria-label="Datos de transferencia bancaria">
+          <div class="bank-title">Datos de transferencia bancaria</div>
+          <div class="bank-row"><strong>Alias Bancario:</strong><span class="bank-val">Celular</span></div>
+          <div class="bank-row"><strong>Alias:</strong><span class="bank-val">0983994268</span></div>
+          <div class="bank-row"><strong>Banco:</strong><span class="bank-val">Banco Sudameris</span></div>
+          <div class="bank-row"><strong>Monto:</strong><span class="bank-val">Gs. 250.000</span></div>
+          <div class="bank-row"><strong>Validez:</strong><span class="bank-val">12 meses</span></div>
+        </div>
+        <div class="bank-note">Válido 12 meses para vender</div>
+
+        <!-- Acciones: 3 botones en una línea (iguales) -->
+        <div class="form-actions">
+          <a id="comprobanteWhats" class="btn btn-green" href="https://wa.me/595974141073?text=Adjunto%20comprobante%20de%20transferencia" target="_blank" rel="noopener">Enviar comprobante a WhatsApp</a>
+
+          <a id="requestIdBtn" class="btn btn-blue" href="https://wa.me/595974141073?text=Hola%20Woz%2C%20solicito%20un%20ID%20de%20vendedor" target="_blank" rel="noopener">Solicitar ID de vendedor</a>
+
+          <button id="publicarBtn" type="submit" class="btn btn-green publicar-btn" disabled>Publicar en Woz Marketplace</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <script src="app.js"></script>
+  <script src="js/tutorial.js" defer></script>
+</body>
+</html>
+

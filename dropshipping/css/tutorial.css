@@ -1,0 +1,198 @@
+/* Overlay: transparente (la oscuridad viene del box-shadow del highlight) */
+#tutorial-overlay {
+  position:fixed;
+  inset:0;
+  background: transparent; /* importante: dejar transparente para que el recorte muestre el elemento normal */
+  z-index:9998;
+  display:none;
+}
+
+/* Highlight: crea la sombra enorme que oscurece todo menos el rectángulo */
+#tutorial-highlight {
+  position:fixed;
+  border-radius:8px;
+  background: transparent;
+  box-shadow: 0 0 0 9999px rgba(0,0,0,0.6);
+  pointer-events:none;
+  z-index:10001;
+  transition: all .18s ease;
+}
+
+/* Estilos base para el tooltip del tutorial */
+#tutorial-tooltip{
+  background:#fff;
+  color:#222;
+  padding:14px;
+  border-radius:8px;
+  box-shadow:0 6px 18px rgba(0,0,0,0.12);
+  max-width:360px;
+  transition:all .18s ease;
+}
+
+/* Más espacio entre texto y controles (mejora primer diseño con botón) */
+#tutorial-tooltip .tutorial-controls{
+  margin-top:18px;
+  display:flex;
+  gap:8px;
+  justify-content:flex-end;
+}
+
+/* Si tienes un botón "start" con id startTutorialBtn, más separación respecto al texto */
+#startTutorialBtn{
+  margin-top:18px;
+}
+
+/* Estilos finales del modal: fondo oscuro + blur, bordes redondeados y botones verticales */
+#tutorial-tooltip.tutorial-final{
+  background: rgba(6,12,30,0.92);
+  color:#fff;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border-radius:14px;
+  box-shadow: 0 12px 40px rgba(2,6,23,0.6);
+  max-width:300px;
+}
+
+/* Texto en blanco para el final */
+#tutorial-tooltip.tutorial-final h4,
+#tutorial-tooltip.tutorial-final p{
+  color:#fff;
+}
+
+/* Botones finales en columna y centrados */
+#tutorial-tooltip.tutorial-final .final-buttons{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  margin-top:12px;
+  align-items:center;
+}
+
+/* Botón principal azul */
+#tutorial-tooltip.tutorial-final .final-buttons .btn-primary{
+  background:#0b66ff;
+  color:#fff;
+  border:none;
+  padding:10px 14px;
+  border-radius:10px;
+  cursor:pointer;
+  width:200px;
+}
+
+/* Reiniciar tutorial: estilo secundario (azul claro) */
+#tutorial-tooltip.tutorial-final .final-buttons .btn-secondary{
+  background:#1e90ff;
+  color:#fff;
+  border:none;
+  padding:10px 14px;
+  border-radius:10px;
+  cursor:pointer;
+  width:200px;
+}
+
+/* Cancelar: botón ghost */
+#tutorial-tooltip.tutorial-final .final-buttons .btn-ghost{
+  background:transparent;
+  color:#e6eefc;
+  border:1px solid rgba(255,255,255,0.12);
+  padding:8px 12px;
+  border-radius:8px;
+  width:200px;
+}
+
+/* Asegurar que el tooltip no se desborde en pantallas pequeñas */
+@media(max-width:480px){
+  #tutorial-tooltip, #tutorial-tooltip.tutorial-final{ max-width:86vw; left:7vw !important; transform:none !important; }
+  #tutorial-tooltip.tutorial-final .final-buttons .btn-primary,
+  #tutorial-tooltip.tutorial-final .final-buttons .btn-secondary,
+  #tutorial-tooltip.tutorial-final .final-buttons .btn-ghost { width:100%; }
+}
+
+/* Controls */
+.tutorial-controls { display:flex; gap:8px; justify-content:flex-end; margin-top:10px; }
+.tutorial-controls button { background:#0b66ff; color:#fff; border:none; padding:8px 10px; border-radius:6px; cursor:pointer; }
+.tutorial-controls .btn-secondary { background:#e6e6e6; color:#111; }
+
+#tutorial-tooltip h4 { margin:0 0 6px; font-size:16px; }
+#tutorial-tooltip p { margin:0 0 10px; font-size:14px; color:#333; }
+
+/* Banner */
+.tutorial-banner { background:#fff; padding:14px; border-bottom:1px solid #eee; text-align:center; }
+.tutorial-banner .tutorial-start { background:#0b66ff; color:#fff; border:none; padding:10px 14px; border-radius:6px; cursor:pointer; }
+
+@media (max-width:700px){ #tutorial-tooltip{ max-width:92%; } }
+/* ================================
+   Estilos para el tutorial.js
+   ================================ */
+#tutorial-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(255 255 255 / 0%);
+  z-index: 10000;
+  display: none;
+}
+
+#tutorial-highlight {
+  position: fixed;
+  z-index: 10001;
+  border: 2px solid #00aaff;
+  border-radius: 8px;
+  pointer-events: none;
+  transition: all 0.25s ease;
+  display: none;
+}
+
+#tutorial-tooltip {
+  position: fixed;
+  background: #fff;
+  color: #222;
+  border-radius: 12px;
+  padding: 16px 18px 12px;
+  box-shadow: 0 6px 24px rgba(0,0,0,0.25);
+  z-index: 10002;
+  max-width: 360px;
+  display: none;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+#tutorial-tooltip h4 {
+  margin-top: 0;
+  margin-bottom: 6px;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #0b66ff;
+}
+
+#tutorial-tooltip p {
+  font-size: 0.9rem;
+  line-height: 1.4;
+  margin-bottom: 12px;
+}
+
+.tutorial-controls {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+#tutorial-tooltip button {
+  border: none;
+  border-radius: 8px;
+  padding: 6px 12px;
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+
+#tutorial-next {
+  background-color: #0b66ff;
+  color: white;
+}
+
+#tutorial-prev {
+  background-color: #e0e0e0;
+  color: #333;
+}
+
+#tutorial-tooltip button:hover {
+  opacity: 0.9;
+}

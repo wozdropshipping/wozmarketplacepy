@@ -1,0 +1,17 @@
+[
+  {
+    "id": "001",
+    "productoId": "A123",
+    "nombre": "Guardabarros Pro",
+    "proveedor": "AliExpress",
+    "precioProveedor": 295654,
+    "estrellas": 4.3,
+    "enviadoPor": "Woz Dropshipping",
+
+    "vendedor": "Juan Pérez",
+    "precioVenta": 399000,
+    "whatsapp": "https://wa.me/595987654321",
+    "descripcion": "Guardabarros resistente para todo tipo de bici.",
+    "imagen": "guardabarros-pro.jpg"
+  }
+]
