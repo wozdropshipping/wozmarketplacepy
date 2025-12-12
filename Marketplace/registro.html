@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Crear cuenta — Woz Marketplace</title>
+        <link rel="stylesheet" href="registro.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+        <link rel="icon" href="data:,">
+    </head>
+    <body>
+        <main class="auth">
+            <header class="auth__header">
+                <a href="index.html" class="brand" aria-label="Volver al inicio">Woz <span>Marketplace</span></a>
+                <h1 class="auth__title">Crea tu cuenta</h1>
+                <p class="auth__subtitle">Regístrate para comenzar a vender y comprar</p>
+            </header>
+
+            <section class="auth__providers">
+                <h2 class="section-title">Regístrate con</h2>
+                <div class="oauth-grid">
+                    <button type="button" class="oauth-btn oauth-woz-payments" aria-label="Registrarse con Woz Payments">
+                        <span class="oauth-text">Woz Payments</span>
+                    </button>
+                    <button type="button" class="oauth-btn oauth-woz-ds" aria-label="Registrarse con Woz Dropshipping">
+                        <span class="oauth-text">Woz Dropshipping</span>
+                    </button>
+                </div>
+                <p class="divider"><span>o con tu correo</span></p>
+            </section>
+
+            <section class="auth__form">
+                <form id="form-registro" action="#" method="post">
+                    <div class="form-row">
+                        <label for="nombre_completo">Nombre completo</label>
+                        <small class="field-hint">Tu nombre y apellido tal como figura en tu documento</small>
+                        <input type="text" id="nombre_completo" name="nombre_completo" required placeholder="Ej. Juan Pérez" autocomplete="name">
+                    </div>
+                    <div class="form-row">
+                        <label for="correo_registro">Correo electrónico</label>
+                        <small class="field-hint">Usaremos este correo para notificaciones y seguridad</small>
+                        <input type="email" id="correo_registro" name="correo_registro" required placeholder="tucorreo@ejemplo.com" autocomplete="email">
+                    </div>
+                    <div class="form-row">
+                        <label for="documento_registro">Número de documento</label>
+                        <small class="field-hint">Ingresa tu número sin espacios ni guiones</small>
+                        <input type="text" id="documento_registro" name="documento_registro" required placeholder="Tu documento" autocomplete="off">
+                    </div>
+                    <div class="grid-2">
+                        <div class="form-row">
+                            <label for="pais">País</label>
+                            <small class="field-hint">Tu país de residencia</small>
+                            <input type="text" id="pais" name="pais" required placeholder="Paraguay" autocomplete="country-name">
+                        </div>
+                        <div class="form-row">
+                            <label for="ciudad">Ciudad</label>
+                            <small class="field-hint">La ciudad donde resides actualmente</small>
+                            <input type="text" id="ciudad" name="ciudad" required placeholder="Asunción" autocomplete="address-level2">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <label for="whatsapp">WhatsApp</label>
+                        <small class="field-hint">Para coordinar entregas y soporte</small>
+                        <input type="tel" id="whatsapp" name="whatsapp" placeholder="+595 999 123 456" autocomplete="tel">
+                    </div>
+                    <div class="grid-2">
+                        <div class="form-row">
+                            <label for="contrasena_registro">Contraseña</label>
+                            <small class="field-hint">Usa al menos 8 caracteres con letras y números</small>
+                            <input type="password" id="contrasena_registro" name="contrasena_registro" required placeholder="" autocomplete="new-password">
+                        </div>
+                        <div class="form-row">
+                            <label for="repetir_contrasena">Repetir contraseña</label>
+                            <small class="field-hint">Ingresa nuevamente tu contraseña</small>
+                            <input type="password" id="repetir_contrasena" name="repetir_contrasena" required placeholder="" autocomplete="new-password">
+                        </div>
+                    </div>
+                    <div class="form-row checkbox-row">
+                        <label class="checkbox">
+                            <input type="checkbox" name="registro_vendedor" value="si" checked>
+                            <span>Crear cuenta como vendedor</span>
+                        </label>
+                    </div>
+                    <button type="submit" class="btn-primary">Crear cuenta</button>
+                </form>
+            </section>
+
+            <footer class="auth__footer">
+                <p>¿Ya tienes cuenta? <a href="login.html">Inicia sesión</a></p>
+                <small>© Woz Marketplace</small>
+            </footer>
+        </main>
+        <script src="js/regsitro.js"></script>
+    </body>
+</html>

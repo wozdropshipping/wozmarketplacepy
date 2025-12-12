@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Detalle del Producto — Woz Marketplace</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/styles-producto.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flag-icons@6.14.0/css/flag-icons.min.css"/>
+   <!-- ...existing code... -->
+  <link rel="stylesheet" href="css/tutorial.css">
+</head>
+<body>
+  <header class="hero">
+    <div class="hero-inner">
+      <a href="index.html" class="brand" aria-label="Ir al inicio">
+        Woz<br><span class="brand--light">Marketplace</span>
+      </a>
+      <label class="search" for="search-input" aria-label="Buscar">
+        <input id="search-input" type="search" placeholder="¿Qué estás buscando?" />
+      </label>
+
+      <!-- NUEVO: Acciones de Usuario (Solo Perfil) -->
+      <div class="user-actions">
+        <a class="action-btn" href="mi-zona.html" aria-label="Mi Perfil">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+          <span>Mi Cuenta</span>
+        </a>
+      </div>
+
+    </div>
+    <nav class="subnav">
+      <button class="nav-btn" id="country-btn">Comprar en Paraguay ▼</button>
+      <button class="nav-btn" id="ganar-btn">Gana con Woz Dropshipping</button>
+    </nav>
+  </header>
+
+  <main class="detalle-producto">
+    <section class="producto-info">
+      <h2 id="nombre-producto">Nombre del producto</h2>
+      <div class="rating" id="rating-producto"></div>
+      <p class="proveedor">
+        Enviado por: <span id="proveedor" class="proveedor-nombre"></span>
+      </p>
+      <p class="vendedor">Vendido por: <span id="vendedor"></span></p>
+      <p class="entrega" id="entrega">Compra en 11 horas y 37 minutos y recibí tu paquete entre el 18 y 22 de octubre</p>
+      <div class="extra-info">
+        <div class="info-item">
+          <svg class="info-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 1 1 18 0z"></path>
+            <circle cx="12" cy="10" r="3"></circle>
+          </svg>
+          <span class="info-label">Enviar a</span>
+          <span class="info-value" id="destino-envio">Paraguay</span>
+        </div>
+        <div class="info-item">
+          <svg class="info-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="1 4 1 10 7 10"></polyline>
+            <path d="M3.51 15a9 9 0 1 0 .49-5"></path>
+          </svg>
+          <span class="info-label">Devoluciones</span>
+          <span class="info-value" id="devoluciones-info">Se puede devolver hasta el 31 del 2026</span>
+        </div>
+        <div class="info-item">
+          <svg class="info-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M20 14.5V7a2 2 0 0 0-1.2-1.8l-6-2.7a2 2 0 0 0-1.6 0l-6 2.7A2 2 0 0 0 4 7v7.5a8 8 0 0 0 3.6 6.6l4.4 2.9 4.4-2.9A8 8 0 0 0 20 14.5z"></path>
+          </svg>
+          <span class="info-label">Pago</span>
+          <span class="info-value" id="pago-seguro">Transacción segura con Woz Pay, Binance</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- NUEVO: Descripción movida aquí para estar en la columna izquierda -->
+    <section class="descripcion-producto card-blanca">
+      <h3>Información sobre el producto</h3>
+      <textarea id="descripcion" class="descripcion-textarea" readonly placeholder="Sin descripción del vendedor"></textarea>
+    </section>
+
+    <section class="acciones">
+      <!-- Descripción eliminada de aquí -->
+      <div class="precio-breakdown card-blanca">
+        <h3>Precio total estimativo</h3>
+        <div class="tabla-precio">
+          <div class="row">
+            <div class="row-title">
+              <span>Precio de vendedor</span>
+              <small class="row-sub">Precio del vendedor</small>
+            </div>
+            <span id="br-precio-vendedor">Gs. —</span>
+          </div>
+          <div class="row">
+            <div class="row-title">
+              <span>Método de envío</span>
+              <small class="row-sub">Opción más rápida</small>
+            </div>
+            <span id="br-envio">—</span>
+          </div>
+          <div class="row">
+            <div class="row-title">
+              <span>Precio del producto</span>
+              <small class="row-sub">Precio del proveedor</small>
+            </div>
+            <span id="br-precio">Gs. —</span>
+          </div>
+          <div class="row">
+            <div class="row-title">
+              <span>IVA 10%</span>
+              <small class="row-sub">Impuesto al valor agregado</small>
+            </div>
+            <span id="br-iva">Gs. —</span>
+          </div>
+          <div class="row">
+            <div class="row-title">
+              <span>Woz Payments</span>
+              <small class="row-sub">Comisión Woz Payments</small>
+            </div>
+            <span id="br-woz">Gs. —</span>
+          </div>
+          <div class="row">
+            <div class="row-title">
+              <span>Seguro de compra</span>
+              <small class="row-sub">Cobertura de compra y reembolsos</small>
+            </div>
+            <span id="br-seguro">Gs. —</span>
+          </div>
+          <div class="row">
+            <div class="row-title">
+              <span>Cargo por tarjeta internacional</span>
+              <small class="row-sub">Procesamiento internacional</small>
+            </div>
+            <span id="br-tarjeta">Gs. —</span>
+          </div>
+          <div class="row subtotal"><span>Subtotal total estimativo</span><span id="br-subtotal">Gs. —</span></div>
+        </div>
+        <div class="notas resaltado">
+          <strong>Notas importantes</strong>
+          <ul>
+            <li>El envío se agrega recién al final porque depende de la ubicación.</li>
+            <li>El cargo por tarjeta internacional puede variar según la política del banco o pasarela.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="botones-vertical">
+        <a id="btn-comprar" class="btn-comprar" href="#">Comprar ahora</a>
+        <button class="btn-reembolso" id="btn-reembolso">Solicitar reembolso</button>
+      </div>
+    </section>
+
+    <div class="section-title section-title-metodos">Métodos de pago</div>
+    <div class="metodos-pago-card">
+      <div class="metodo-row">
+        <div>
+          <div class="metodo-label">Woz Payments links</div>
+          <div class="metodo-desc">Paga con tarjeta de crédito o débito</div>
+        </div>
+      </div>
+      <div class="metodo-row">
+        <div>
+          <div class="metodo-label">Binance</div>
+          <div class="metodo-desc">Usa USDT o Bitcoin para pagar un producto</div>
+        </div>
+      </div>
+      <div class="alerta">
+        <b>Información importante:</b>
+        <p>Todos los pagos usando Woz Payments Links o Binance cuentan con respaldo y garantía de reembolso por 120 días corridos.<br><br>No recurras a pagos fuera del ecosistema Woz Payments. Cualquier transacción fuera de la misma no está cubierta por el seguro de reembolso.</p>
+      </div>
+    </div>
+
+    <div class="section-title section-title-vendedor">Información sobre el vendedor</div>
+    <div class="vendedor-card">
+      <div class="seller-table">
+        <div class="seller-row">
+          <div class="row-title">
+            <span>Vendedor</span>
+            <small class="seller-sub">Registrado en Woz Marketplace</small>
+          </div>
+          <span id="vendedor-info"></span>
+        </div>
+        <div class="seller-row">
+          <div class="row-title">
+            <span>Activo desde</span>
+            <small class="seller-sub">Fecha de inicio en Woz Marketplace</small>
+          </div>
+          <span>27-09-2025</span>
+        </div>
+        <div class="seller-row">
+          <div class="row-title">
+            <span>WhatsApp</span>
+            <small class="seller-sub">Contacto directo del vendedor</small>
+          </div>
+          <span><a href="https://wa.me/595983222444" target="_blank">0983-222-444</a></span>
+        </div>
+        <div class="seller-row">
+          <div class="row-title">
+            <span>Ventas cerradas</span>
+            <small class="seller-sub">Órdenes completadas con éxito</small>
+          </div>
+          <span>117</span>
+        </div>
+        <div class="seller-row">
+          <div class="row-title">
+            <span>Volumen total</span>
+            <small class="seller-sub">Volumen de ventas anual</small>
+          </div>
+          <span>Gs. 57.094.450</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Reseñas del vendedor (bloque autónomo) -->
+    <section class="seller-reviews" aria-labelledby="seller-reviews-title">
+      <header class="seller-reviews__header">
+        <div class="sr-head-left">
+          <h3 id="seller-reviews-title">Reseñas del vendedor</h3>
+          <div class="sr-head-stars" aria-label="Calificación general">
+            <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+          </div>
+        </div>
+        <div class="sr-head-right">
+          <div class="sr-head-rating"><span id="sr-rating">—</span> <span class="sr-de">de</span> 5</div>
+          <div class="sr-head-count" id="sr-count">— calificaciones globales</div>
+        </div>
+      </header>
+
+      <div class="seller-reviews__distribution" role="group" aria-label="Distribución por estrellas">
+        <!-- 5 to 1 stars rows; data-percent via JS sets width -->
+        <div class="sr-row" data-stars="5">
+          <span class="sr-row__label">5 estrellas</span>
+          <div class="sr-row__bar"><div class="sr-row__fill" id="sr-bar-5" style="width:0%"></div></div>
+          <span class="sr-row__pct" id="sr-pct-5">0%</span>
+        </div>
+        <div class="sr-row" data-stars="4">
+          <span class="sr-row__label">4 estrellas</span>
+          <div class="sr-row__bar"><div class="sr-row__fill" id="sr-bar-4" style="width:0%"></div></div>
+          <span class="sr-row__pct" id="sr-pct-4">0%</span>
+        </div>
+        <div class="sr-row" data-stars="3">
+          <span class="sr-row__label">3 estrellas</span>
+          <div class="sr-row__bar"><div class="sr-row__fill" id="sr-bar-3" style="width:0%"></div></div>
+          <span class="sr-row__pct" id="sr-pct-3">0%</span>
+        </div>
+        <div class="sr-row" data-stars="2">
+          <span class="sr-row__label">2 estrellas</span>
+          <div class="sr-row__bar"><div class="sr-row__fill" id="sr-bar-2" style="width:0%"></div></div>
+          <span class="sr-row__pct" id="sr-pct-2">0%</span>
+        </div>
+        <div class="sr-row" data-stars="1">
+          <span class="sr-row__label">1 estrella</span>
+          <div class="sr-row__bar"><div class="sr-row__fill" id="sr-bar-1" style="width:0%"></div></div>
+          <span class="sr-row__pct" id="sr-pct-1">0%</span>
+        </div>
+      </div>
+
+      <div class="seller-reviews__comments" aria-label="Comentarios del vendedor">
+        <!-- Usa tu contenido existente de comentarios aquí -->
+        <div class="sr-comments__placeholder" id="sr-comments">
+          <!-- Inserta aquí tarjetas de comentarios existentes o reutiliza tu markup -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Info: Cómo funcionan las opiniones y reseñas de clientes (ubicado encima del título de comentarios) -->
+    <section class="reviews-info resaltado" aria-labelledby="reviews-info-title">
+      <header class="reviews-info__header">
+        <h3 id="reviews-info-title">Cómo funcionan las opiniones y reseñas de clientes</h3>
+        <button class="reviews-info__toggle" id="reviews-info-toggle" aria-expanded="false" aria-controls="reviews-info-content" title="Mostrar detalles" aria-label="Abrir sección informativa">
+          <svg class="chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </button>
+      </header>
+      <div class="reviews-info__content" id="reviews-info-content" hidden>
+        <p>
+          Las opiniones y reseñas en Woz Marketplace se publican bajo políticas de verificación estrictas, diseñadas para reflejar experiencias reales de compra y métricas confiables de ventas. <br>Antes de mostrarse, cada reseña pasa por controles automáticos y humanos que detectan señales de manipulación, duplicados, lenguaje ofensivo o datos personales sensibles.
+        </p>
+        <p>
+          La valoración global del vendedor se calcula como un promedio ponderado en base a: número total de ventas cerradas, distribución por estrellas, antigüedad del vendedor, <br>y consistencia de la calidad del servicio (entregas a tiempo, reembolsos exitosos, respuesta de soporte).<br> El desglose por estrellas muestra el porcentaje de reseñas en cada nivel, tomando una ventana temporal que prioriza compras recientes para mantener la relevancia.
+        </p>
+        <p>
+          Para proteger la confidencialidad de clientes y evitar sesgos, algunas calificaciones no se muestran de forma pública cuando contienen información identificable <br>o violan nuestras normas. <br>Estas reseñas sí se tienen en cuenta de forma anonimizada para el cálculo estadístico, manteniendo el equilibrio entre transparencia y privacidad.
+        </p>
+        <p>
+          Revisamos continuamente los modelos de detección de fraude y el muestreo de reseñas para asegurar que las opiniones reflejen el desempeño real del vendedor. <br>Cuando se corrigen pedidos mediante reembolsos, las reseñas vinculadas pueden ser re-etiquetadas como “resuelto” y, según corresponda, ajustadas en su impacto estadístico.
+        </p>
+      </div>
+    </section>
+
+    <div class="section-title section-title-comentarios">Comentarios de compradores</div>
+
+      <div class="reseñas" id="contenedor-reseñas"></div>
+
+    <section class="calificacion">
+      <h3>Deja una calificación</h3>
+      <form id="form-reseña">
+        <label>Estrellas:</label>
+        <div class="estrellas-input" id="estrellas-calificacion">
+          <span class="star">★</span>
+          <span class="star">★</span>
+          <span class="star">★</span>
+          <span class="star">★</span>
+          <span class="star">★</span>
+        </div>
+        <label for="id-compra">ID de compra:</label>
+        <input type="text" id="id-compra" placeholder="ID-456-XXX-XXX" required />
+        <label>Deja un comentario:</label>
+        <textarea id="comentario" class="comentario-textarea" placeholder="Escribe un comentario"></textarea>
+        <button type="submit" class="btn-publicar">Publicar reseña</button>
+      </form>
+      <p class="nota">Califica con criterio y responsabilidad</p>
+    </section>
+  </main>
+
+  
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <small>© Woz Marketplace — Datos ficticios para demo</small>
+    </div>
+  </footer>
+
+  <script src="js/producto.js"></script>
+  <script>
+    // Seller Reviews: JS nativo para setear calificación, total y porcentajes
+    // Proveer datos reales desde tu backend/LS y llamar a initSellerReviews(data)
+    function initSellerReviews(data) {
+      // data = { rating: Number(0-5), total: Number, dist: {1:%,2:%,3:%,4:%,5:%} }
+      const ratingEl = document.getElementById('sr-rating');
+      const countEl = document.getElementById('sr-count');
+      if (ratingEl) ratingEl.textContent = (Math.round((data.rating||0))).toLocaleString('es-ES');
+      if (countEl) countEl.textContent = `${Number(data.total||0).toLocaleString('es-ES')} reseñas`;
+
+      // Estrellas visuales (relleno según rating entero)
+      const stars = document.querySelectorAll('.seller-reviews .sr-head-stars .star');
+      const filled = Math.round(data.rating||0);
+      stars.forEach((s, i) => { s.style.color = i < filled ? '#ffc107' : '#e5e7eb'; });
+
+      // Barras por porcentaje
+      const dist = data.dist || {};
+      [5,4,3,2,1].forEach(n => {
+        const pct = Math.max(0, Math.min(100, Number(dist[n]||0)));
+        const bar = document.getElementById(`sr-bar-${n}`);
+        const label = document.getElementById(`sr-pct-${n}`);
+        if (bar) requestAnimationFrame(() => { bar.style.width = pct + '%'; });
+        if (label) label.textContent = `${pct}%`;
+      });
+    }
+
+    // Nota: la inicialización real se realiza desde js/producto.js usando datos persistentes.
+  </script>
+  <script>
+    // Toggle para "Cómo funcionan las opiniones y reseñas de clientes"
+    (function(){
+      const btn = document.getElementById('reviews-info-toggle');
+      const content = document.getElementById('reviews-info-content');
+      if(!btn || !content) return;
+      btn.addEventListener('click', () => {
+        const expanded = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', String(!expanded));
+        content.hidden = expanded;
+      });
+    })();
+
+    // Desktop/Tablet: auto-expand the reviews info section and keep mobile closed
+    (function(){
+      const btn = document.getElementById('reviews-info-toggle');
+      const content = document.getElementById('reviews-info-content');
+      const mq = window.matchMedia('(min-width: 768px)');
+      function applyDesktopState(e){
+        if(!btn || !content) return;
+        const isDesktop = (e && e.matches) || mq.matches;
+        if(isDesktop){
+          // Desktop/tablet always open
+          btn.setAttribute('aria-expanded','true');
+          content.hidden = false;
+        } else {
+          // Mobile must remain closed by default
+          btn.setAttribute('aria-expanded','false');
+          content.hidden = true;
+        }
+      }
+      if(mq.addEventListener){
+        mq.addEventListener('change', applyDesktopState);
+      } else if(mq.addListener){
+        mq.addListener(applyDesktopState);
+      }
+      applyDesktopState();
+    })();
+  </script>
+   <!-- ...existing code... -->
+  <script src="js/tutorial.js" defer></script>
+  <!-- Modal de Solicitud de Reembolso -->
+  <div id="modal-reembolso" class="modal hidden" aria-hidden="true" role="dialog" aria-labelledby="modal-title-reembolso">
+    <div class="modal-content">
+      <h3 id="modal-title-reembolso">Solicitud de reembolso</h3>
+      <form id="form-reembolso">
+        <label for="titulo-solicitud">Título de solicitud</label>
+        <input type="text" id="titulo-solicitud" placeholder="Ej: Producto defectuoso" required />
+
+        <label for="producto-solicitud">Producto</label>
+        <input type="text" id="producto-solicitud" placeholder="Nombre del producto" required />
+
+        <label for="correo-solicitud">Correo electrónico</label>
+        <input type="email" id="correo-solicitud" placeholder="tu@correo.com" required />
+
+        <label for="id-compra-solicitud">ID de compra</label>
+        <input type="text" id="id-compra-solicitud" placeholder="ID-456-XXX-XXX" required />
+
+        <label for="motivo-solicitud">Motivo de solicitud</label>
+        <textarea id="motivo-solicitud" placeholder="Describe el motivo" required></textarea>
+
+        <div class="fechas-row">
+          <div class="fecha-item">
+            <label for="fecha-actual">Fecha actual</label>
+            <input type="date" id="fecha-actual" readonly />
+            <small id="fecha-actual-text" class="fecha-actual-text"></small>
+          </div>
+          <div class="fecha-item">
+            <label for="fecha-compra">Fecha de compra</label>
+            <input type="date" id="fecha-compra" required />
+          </div>
+        </div>
+
+        <div id="estado-solicitud" class="estado-solicitud"></div>
+        <div class="acciones-modal">
+          <button type="button" class="btn-secundario" id="btn-cerrar-reembolso" onclick="window.closeRefundModal && window.closeRefundModal()">Cerrar formulario</button>
+          <button type="submit" class="btn-enviar">Enviar solicitud</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <style>
+    /* Desktop/Tablet yellow accents for reviews */
+    @media (min-width: 768px){
+      .seller-reviews .sr-head-stars .star{color:#ffc107}
+      .seller-reviews .sr-row__fill{background:#ffc107}
+      /* Info box: desktop/tablet always open, add horizontal margins to avoid left edge clipping */
+      .reviews-info{display:block;width:100%;margin-left:16px;margin-right:16px;}
+      .reviews-info__toggle{display:none}
+      /* Neutral styling: remove yellow border, use light gray */
+      .reviews-info.resaltado{border-color:#e5e7eb;background:#ffffff}
+      .reviews-info.resaltado{box-shadow:none}
+      /* Ensure inner content stretches and no unexpected padding causes right gap */
+      .reviews-info__content{width:100%}
+    }
+    .hidden{display:none}
+    .modal{position:fixed;inset:0;background:rgba(0,0,0,0.45);display:flex;align-items:flex-start;justify-content:center;z-index:1000;padding:16px;overflow:auto}
+    .modal-content{position:relative;background:#fff;border-radius:12px;max-width:520px;width:100%;padding:16px;box-shadow:0 10px 30px rgba(0,0,0,0.2);margin-top:40px;max-height:80vh;overflow:auto}
+    #form-reembolso label{display:block;margin-top:16px;margin-bottom:6px;font-weight:700}
+    #form-reembolso input,#form-reembolso textarea{width:100%;padding:12px;border:1px solid #ddd;border-radius:10px}
+    #form-reembolso textarea{min-height:100px;resize:vertical}
+    .fechas-row{display:flex;gap:12px;margin-top:12px;flex-wrap:wrap}
+    .fechas-row .fecha-item{flex:1 1 200px}
+    .acciones-modal{display:flex;gap:10px;margin-top:16px}
+    .btn-secundario{background:#f2f2f2;color:#333;border:1px solid #ddd;border-radius:10px;padding:12px 16px;cursor:pointer;flex:1}
+    .btn-enviar{background:#111;color:#fff;border:none;border-radius:10px;padding:12px 16px;cursor:pointer;flex:1}
+    .estado-solicitud{margin-top:10px;padding:10px;border-radius:8px;font-weight:600}
+    .estado-aprobado{background:#e9f7ef;color:#1e7e34;border:1px solid #c3e6cb}
+    .estado-rechazado{background:#fbe9e9;color:#911a1a;border:1px solid #f5c6cb}
+    .fecha-actual-text{display:block;color:#666;margin-top:4px}
+    .precio-breakdown{margin-top:8px}
+    .precio-breakdown h3{margin:0 0 8px 0;color:#111;font-size:16px;font-weight:700}
+    .tabla-precio{display:flex;flex-direction:column;border:1px solid #e5e5e5;border-radius:12px;padding:8px;background:#fff}
+    .tabla-precio .row{display:flex;justify-content:space-between;align-items:center;padding:10px 12px;color:#111;font-size:16px;line-height:1.6}
+    .tabla-precio .row + .row{border-top:1px solid #eee}
+    .tabla-precio .row span:first-child{font-weight:400}
+    .tabla-precio .row span:last-child{font-weight:400}
+    .tabla-precio .subtotal{font-weight:700 !important;border-top:2px solid #ddd;margin-top:8px;padding:12px 12px;background:#f3f4f6;border:1px solid #e5e7eb;border-radius:10px}
+    .tabla-precio .subtotal span{font-weight:800 !important}
+    .precio-breakdown .tabla-precio .row.subtotal span#br-subtotal{font-weight:800 !important}
+    .notas.resaltado{margin-top:8px;background:#eaf4ff;border:1px solid #cfe3ff;border-radius:12px;padding:12px;color:#083a66}
+    .notas.resaltado strong{display:block;margin-bottom:6px}
+    .notas.resaltado ul{margin:6px 0 0 18px}
+    @media (max-width: 480px){
+      .modal-content{max-width:95vw;margin-top:24px;padding:12px}
+    }
+  </style>
+  <script>
+    function logout() {
+      localStorage.removeItem('usuarioActual');
+      window.location.href = 'index.html';
+    }
+  </script>
+</body>
+</html>
